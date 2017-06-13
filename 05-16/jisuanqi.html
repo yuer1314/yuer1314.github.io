@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+	<style>
+	body{
+
+		background-color:purple;
+	}
+	.cal{
+		width: 300px;
+		height: 300px;
+		background-color: yellow;
+		overflow: hidden;
+	}
+	.num{
+		width: 100px;
+		float: left;
+	}
+	.num>input{
+		width: 30px;
+	}
+	.sign{
+		float: left;
+	}
+	</style>
+</head>
+<body><div class="cal">
+	<input type="text" class="txt">
+	<div class="num">
+		<input type="button" value="1">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<input type="button" value="4">
+		<input type="button" value="5">
+		<input type="button" value="6">
+		<input type="button" value="7">
+		<input type="button" value="8">
+		<input type="button" value="9">
+		<input type="button" value="0">
+	</div>
+	<div class="sign">
+		<input type="button" value="+">
+		<input type="button" value="-">
+		<input type="button" value="*">
+		<input type="button" value="/">
+	</div>
+	<input type="button" class="count" value="=">
+	<input type="button" class="del" value="C">
+	</div>
+	<script src="js/jquery-3.0.0.js"></script>
+	<script>
+		var num1="";
+		var sign="";
+		var num2="";
+		var sum="";
+		$(".num input:button").click(function(){
+			var num=$(this).val();
+			if(sign){
+				num2=num2+num;
+				$(".txt").val(num1+sign+num2);
+
+			}else{
+				num1=num1+num;
+				if(num1!=0){
+					sum=0;
+				}
+				
+				$(".txt").val(num1);	
+			}
+
+		})
+		$(".sign input:button").click(function(){
+				if(num2){
+				switch(sign){
+				case "+":
+					sum=parseInt(num1)+parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "-":
+					sum=parseInt(num1)-parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "*":
+					sum=parseInt(num1)*parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "/":
+					sum=parseInt(num1)/parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+			}
+				sign=$(this).val();
+				num1=sum;
+				num2="";
+				$(".txt").val(sum+sign);
+			}
+			else{
+				if(sum!=0){
+					num1=sum;
+				}
+				sign=$(this).val();
+				$(".txt").val(num1+sign);
+				}
+			
+		})
+		$(".count").click(function(){
+			switch(sign){
+				case "+":
+					sum=parseInt(num1)+parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "-":
+					sum=parseInt(num1)-parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "*":
+					sum=parseInt(num1)*parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+				case "/":
+					sum=parseInt(num1)/parseInt(num2);
+					$(".txt").val(sum);
+					num1="";
+					num2="";
+					sign="";
+					break;	
+			}
+		})
+		$(".del").click(function(){
+			$(".txt").val("");
+					num1="";
+					num2="";
+					sign="";
+		})
+
+	</script>
+</body>
+</html>
